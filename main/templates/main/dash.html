@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load crispy_forms_tags %}
+<head>
+    <meta charset="UTF-8">
+    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Dashboard</title>
+</head>
+<body>
+<a href="/logout"><button class="btn logoutbt mybt">Logout</button></a>
+<a href="/"><button class="btn homebt mybt">Home</button></a>
+
+<h1>Welcome to Dashboard</h1>
+
+<div class="container">
+  <div class="wallet">
+       {% if user.is_authenticated %}
+    <h3>Public Address</h3>
+      <h3>{{ address }}</h3><span><button class="btn mybt" onclick="toggleHide()">QR Code</button></span>
+
+            <div id="qrDIV" style="display:none">
+            </div>
+  </br></br>
+      <p><img src="{% static 'images/rocketToken.png' %}" class="criptoicon"/> <span>{{ etherBalance  }} ether </span></p>
+       <p><img src="{% static 'images/ether.png' %}" class="criptoicon"/> <span>{{ rocketBalance }} rocket tokens </span></p>
+
+      <p>TokePrice is {{ tokePrice }} ether /  {{ tokensSold }} token sold</p>
+      <p class="error">{{ msg }}</p>
+      <div class="row">
+        <div class="coln">
+        <form method="post" class="logform">
+        {% csrf_token %}
+        {{form|crispy}}
+            <button type="submit" class="btn mybt">Buy</button>
+        </form>
+        </div>
+    </div>
+        {% endif %}
+  </div>
+</div>
+</div>
+
+</body>
+<script src="{% static 'js/qrcode.min.js' %}"></script>
+<script>
+
+    var qrcode = new QRCode(document.getElementById("qrDIV"));
+    var qrdata = '{{ address }}';
+    qrcode.makeCode(qrdata);
+
+    function toggleHide() {
+  var x = document.getElementById("qrDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+
+</script>
+</html>

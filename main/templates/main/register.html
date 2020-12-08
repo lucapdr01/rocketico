@@ -1,0 +1,26 @@
+<html lang="en">
+{% load static %}
+{% load crispy_forms_tags %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+   <title>Register</title>
+</head>
+<body>
+<div class="row">
+        <div class="coln">
+    <form method="POST" class="form-group logform">
+      {% csrf_token %}
+      {{form|crispy}}
+      {{profileForm|crispy}}
+      <button type="submit" class="btn mybt">Register</button>
+  </form>
+        </div>
+
+</div>
+
+</body>
+</html>
