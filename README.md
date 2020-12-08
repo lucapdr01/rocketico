@@ -22,4 +22,6 @@ an amount of Rocket Token using the form in the dashboard page. You should see y
 in the percentage of tokens sold in the home page.
 
 
+Luca Pedrazini
+
 
