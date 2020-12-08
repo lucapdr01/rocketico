@@ -87,9 +87,10 @@ def home(request):
         warning = ""
 
     else:
+        maxToken = 0
         percentage = 0
         warning = "Contracts Not Deployed"
-    return render(request, "main/home.html", {"percentage": percentage, "warning": warning})
+    return render(request, "main/home.html", {"percentage": percentage, "total": maxToken, "warning": warning})
 
 
 def dash(request):
